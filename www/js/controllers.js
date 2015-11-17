@@ -13,8 +13,7 @@ angular.module('starter.controllers', [])
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    id: '1', // We need to use and ID to identify the modal that is 
+  $ionicModal.fromTemplateUrl('templates/login.html', {    
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -29,8 +28,7 @@ angular.module('starter.controllers', [])
               content: 'Anda Berhasil Hello World!!!'
             }).then(function(res) {
               console.log('Test Alert Box');
-            });
-    $scope.loginModal.remove();
+            });    
   };
 
   // Open the login modal
@@ -56,8 +54,7 @@ angular.module('starter.controllers', [])
   $scope.pengeluaranData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/pengeluaran.html', {
-    id: '2', // We need to use and ID to identify the modal that is 
+  $ionicModal.fromTemplateUrl('templates/pengeluaran.html', {    
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -71,8 +68,7 @@ angular.module('starter.controllers', [])
 
   // Triggered in the login modal to close it
   $scope.closePengeluaran = function() {
-    $scope.pengeluaranModal.hide();
-    $scope.pengeluaranModal.remove();
+    $scope.pengeluaranModal.hide();    
   };
 
   // Perform the login action when the user submits the login form
@@ -92,8 +88,7 @@ angular.module('starter.controllers', [])
   $scope.pemasukanData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/pemasukan.html', {
-    id: '3', // We need to use and ID to identify the modal that is 
+  $ionicModal.fromTemplateUrl('templates/pemasukan.html', {    
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -107,7 +102,7 @@ angular.module('starter.controllers', [])
   // Triggered in the login modal to close it
   $scope.closePemasukan = function() {
     $scope.pemasukanModal.hide();    
-    $scope.pemasukanModal.remove();    
+    
   };
 
   // Perform the login action when the user submits the login form
@@ -116,7 +111,12 @@ angular.module('starter.controllers', [])
     alert($scope.pemasukanData.nama);    
   };
 
-
+  // Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+      $scope.loginModal.remove();
+      $scope.pengeluaranModal.remove();
+      $scope.pemasukanModal.remove();    
+  });
 
 
 })
