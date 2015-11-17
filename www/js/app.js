@@ -39,22 +39,23 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         templateUrl: 'templates/search.html'
       }
     }
-  })
-
-  .state('app.pengeluaran', {
-      url: '/pengeluaran',
+  })  
+  .state('app.playlists', {
+      url: '/playlists',
       views: {
         'menuContent': {
-          templateUrl: 'templates/pengeluaran.html'
+          templateUrl: 'templates/playlists.html',
+          controller: 'PlaylistsCtrl'
         }
       }
-    })    
-    .state('app.pemasukan', {
-      url: '/pemasukan',
+    })
+    
+    
+    .state('app.grafik', {
+      url: '/grafik',
       views: {
         'menuContent': {
-          templateUrl: 'templates/pemasukan.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/grafik.html',          
         }
       }
     })
