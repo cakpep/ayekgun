@@ -18,15 +18,18 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
+        <ion-item menu-close ng-click="login(1)">
           Login
         </ion-item>        
-        <ion-item menu-close href="#/app/pengeluaran">
+        <ion-item menu-close ng-click="pengeluaran(2)">
           Pengeluaran
         </ion-item>        
-        <ion-item menu-close href="#/app/pemasukan">
+        <ion-item menu-close ng-click="pemasukan(3)">
           Pemasukan
         </ion-item>
+        <ion-item menu-close href="#/app/grafik">
+          grafik
+        </ion-item>        
       </ion-list>
     </ion-content>
   </ion-side-menu>

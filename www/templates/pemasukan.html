@@ -1,5 +1,25 @@
-<ion-view view-title="Browse">
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Pemasukan</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closePemasukan()">Close</button>
+    </div>
+  </ion-header-bar>
   <ion-content>
-    <h1>Pemasukan</h1>
+    <form ng-submit="doSavePemasukan()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Nama Pemasukan</span>
+          <input type="text" ng-model="pemasukanData.nama">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Jumlah</span>
+          <input type="text" ng-model="pemasukanData.jumlah">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Simpan</button>
+        </label>
+      </div>
+    </form>
   </ion-content>
-</ion-view>
+</ion-modal-view>
