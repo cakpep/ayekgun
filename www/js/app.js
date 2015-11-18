@@ -49,6 +49,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
+   .state('app.pengeluarans', {
+      url: '/pengeluarans',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/pengeluaranIndex.html',
+          controller: 'PengeluaranController'
+        }
+      }
+    })
     
     
     .state('app.grafik', {
