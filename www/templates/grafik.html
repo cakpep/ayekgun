@@ -1,5 +1,54 @@
-<ion-view view-title="Grafik">
-  <ion-content>
-    <h1>Grafik</h1>
-  </ion-content>
+<ion-view view-title="Grafik">	  	  		
+	    <ion-content ng-controller="GrafikController">
+		    <div class="item tabs tabs-secondary tabs-icon-left">
+		        <a class="tab-item" ng-click="pengeluaran()">
+		          <i class="icon ion-arrow-graph-up-right"></i>
+		          Chart Pemasukan
+		        </a>
+		        <a class="tab-item" ng-click="pengeluaran()">
+		          <i class="icon ion-arrow-graph-down-right"></i>
+		          Chart Pemasukan
+		        </a>	        
+		    </div>
+		    <div class="card">
+		        <div class="item item-divider">
+		            A line chart
+		        </div>
+		        <div class="item item-text-wrap">
+		            <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
+		        </div>
+		    </div>
+		    <div class="card">
+		        <div class="item item-divider">
+		            A bar chart
+		        </div>
+		        <div class="item item-text-wrap">
+		            <canvas id="bar" class="chart chart-bar" data="data" labels="labels" legend="true" series="series" options="{showTooltips: false}"></canvas>
+		        </div>
+		    </div>
+		    <div class="card">
+		        <div class="item item-divider">
+		            PIE
+		        </div>
+		        <div class="item item-text-wrap">
+		            <canvas id="pie" class="chart chart-pie" data="polarData.data" labels="polarData.labels" legend="true">
+		        </div>
+		    </div>
+		    <div class="card">
+		        <div class="item item-divider">
+		            POLLAR
+		        </div>
+		        <div class="item item-text-wrap">
+		            <canvas id="polar-area" class="chart chart-polar-area" data="polarData.data" labels="polarData.labels" legend="true">
+		        </div>
+		    </div>
+		    <div class="card">
+		        <div class="item item-divider">
+		            DOGNUT
+		        </div>
+		        <div class="item item-text-wrap">
+		            <canvas id="doughnut" class="chart chart-doughnut" data="polarData.data" labels="polarData.labels" legend="true">
+		        </div>
+		    </div>
+		</ion-content>  		        
 </ion-view>

@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout , $ionicPopup, $ionicPlatform) {
    var db;
@@ -283,6 +283,22 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('HomeController', function($scope,$stateParams,Session) {
+  $scope.pengeluarans = [
+    { title: 'ngopi', jumlah: 2000, id: 3 },
+    { title: 'burjo', jumlah: 2000, id: 4 },
+    { title: 'Rap',   jumlah: 0, id: 5 },
+    { title: 'Cowbe', jumlah: null, id: 6 },
+    { title: 'makan', jumlah: 2000, id: 1 },
+    { title: 'minum', jumlah: 2000, id: 2 }    
+  ];
+  $scope.welcome = 'hello World';
+  //using session 
+  $scope.sessions = Session.query();  
+  $scope.session = Session.get({sessionId: $stateParams.sessionId});
+  console.log($scope.session);  
+})
+
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
     { title: 'makan', jumlah: 2000, id: 1 },
@@ -307,5 +323,21 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller(['PlaylistCtrl','PengeluaranController'], function($scope, $stateParams) {
+.controller('GrafikController', function($scope) {
+ 
+    $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+    $scope.series = ['Series A', 'Series B'];
+    $scope.data = [
+        [65, 59, 80, 81, 56, 55, 40],
+        [28, 48, 40, 19, 86, 27, 90]
+    ];
+
+    $scope.polarData = {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        data: [65, 59, 80, 81, 56, 55, 40],
+    };
+ 
+})
+
+.controller(['HomeController','PlaylistCtrl','PengeluaranController','GrafikController'], function($scope, $stateParams) {
 });

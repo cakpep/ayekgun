@@ -5,7 +5,7 @@
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">          
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -18,20 +18,23 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
-          Login
-        </ion-item>        
+        <ion-item menu-close href="#/app/home">
+          <i class="icon ion-home"></i> Home
+        </ion-item>              
         <ion-item menu-close ng-click="pengeluaran()">
-          Pengeluaran
+          <i class="icon ion-ios-upload"></i> Pengeluaran
         </ion-item>        
         <ion-item menu-close ng-click="pemasukan()">
-          Pemasukan
+          <i class="icon ion-ios-download"></i> Pemasukan
         </ion-item>
         <ion-item menu-close href="#/app/grafik">
-          grafik
+          <i class="icon ion-arrow-graph-up-right"></i> grafik
         </ion-item>
         <ion-item menu-close href="#/app/pengeluarans">
-          Daftar Pengeluaran
+          <i class="icon ion-clipboard"></i> Daftar Pengeluaran
+        </ion-item>
+        <ion-item menu-close ng-click="login()">
+          <i class="icon ion-log-in"></i> Login
         </ion-item>
       </ion-list>
     </ion-content>
