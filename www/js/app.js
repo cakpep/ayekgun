@@ -1,12 +1,14 @@
 // Ionic Starter App
 
+//variabel to set db 
+var db;
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers','chart.js'])
+angular.module('starter', ['ionic', 'starter.controllers','chart.js','ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,6 +21,27 @@ angular.module('starter', ['ionic', 'starter.controllers','chart.js'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+     
+      // App syntax
+        db = $cordovaSQLite.openDB({ name: "my.db" });
+     
+      // for opening a background db:
+      db = $cordovaSQLite.openDB({ name: "my.db", bgType: 1 });
+      console.log(db);
+
+  // $scope.execute = function() {
+  //   var query = "INSERT INTO test_table (data, data_num) VALUES (?,?)";
+  //   $cordovaSQLite.execute(db, query, ["test", 100]).then(function(res) {
+  //     console.log("insertId: " + res.insertId);
+  //   }, function (err) {
+  //     console.error(err);
+  //   });
+  // };
+
+    // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS team (id integer primary key, name text)");
+
+
   });
 })
 
