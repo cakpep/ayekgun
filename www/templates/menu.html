@@ -8,6 +8,10 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">          
         </button>
       </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-home" menu-toggle="right">          
+        </button>
+      </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
@@ -36,6 +40,21 @@
         <ion-item menu-close ng-click="login()">
           <i class="icon ion-log-in"></i> Login
         </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+  <ion-side-menu side="right">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">Settings</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item menu-close href="#/app/home">
+          <i class="icon ion-home"></i> Mata uang
+        </ion-item>              
+        <ion-item menu-close ng-click="pengeluaran()">
+          <i class="icon ion-ios-upload"></i> Category
+        </ion-item>                
       </ion-list>
     </ion-content>
   </ion-side-menu>
