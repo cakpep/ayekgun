@@ -9,44 +9,6 @@ angular.module('starter.controllers', ['starter.services'])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  // Form data for the login modal
-//  $scope.loginData = {};
-//
-//  // Create the login modal that we will use later
-//  $ionicModal.fromTemplateUrl('templates/index/login.html', {    
-//    scope: $scope,
-//    animation: 'slide-in-up'
-//  }).then(function(modal) {
-//    $scope.loginModal = modal;
-//  });
-//
-//  // Triggered in the login modal to close it
-//  $scope.closeLogin = function() {
-//    $scope.loginModal.hide();
-//    $ionicPopup.alert({
-//              title: 'Success',
-//              content: 'Anda Berhasil Hello World!!!'
-//            }).then(function(res) {
-//              console.log('Test Alert Box');
-//            });    
-//  };
-//
-//  // Open the login modal
-//  $scope.login = function() {
-//    $scope.loginModal.show();
-//  };
-//
-//  // Perform the login action when the user submits the login form
-//  $scope.doLogin = function() {
-//    console.log('Doing login', $scope.loginData);
-//
-//    // Simulate a login delay. Remove this and replace with your login
-//    // code if using a login system
-//    $timeout(function() {
-//      $scope.closeLogin();
-//    }, 1000);
-//  };
-
   /********************************************************************************************
     * proses pengeluaran
     */
@@ -123,8 +85,7 @@ angular.module('starter.controllers', ['starter.services'])
   };
   // end of modal category settings
   // Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-      $scope.loginModal.remove();
+  $scope.$on('$destroy', function() {      
       $scope.pengeluaranModal.remove();
       $scope.pemasukanModal.remove();
       $scope.categoryModal.remove();
