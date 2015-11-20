@@ -72,6 +72,15 @@ angular.module('starter', ['ionic', 'starter.controllers','chart.js','ngCordova'
           }
         }
       })
+      .state('app.pengeluaran', {
+        url: '/pengeluarans/:pemasukanId',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/pengeluaran/detil.html',
+            controller: 'PengeluaranController'
+          }
+        }
+      })
       .state('app.pemasukans', {
         url: '/pemasukans',
         views: {
