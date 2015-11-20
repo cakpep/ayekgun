@@ -47,7 +47,11 @@ angular.module('starter', ['ionic', 'starter.controllers','chart.js','ngCordova'
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-
+     .state('login', {
+        url: '/login',
+        templateUrl: 'templates/index/login.html',
+        controller: 'LoginCtrl'
+    })
     .state('app', {
       url: '/app',
       abstract: true,
@@ -110,5 +114,6 @@ angular.module('starter', ['ionic', 'starter.controllers','chart.js','ngCordova'
       });
   // if none of the above states are matched, use this as the fallback
   // default action route
-  $urlRouterProvider.otherwise('/app/home');
+  // $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/login');
 });
