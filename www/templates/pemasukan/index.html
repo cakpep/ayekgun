@@ -1,0 +1,15 @@
+<ion-view view-title="Daftar Pemasukan">
+  <ion-content>
+    <div class="item tabs tabs-secondary tabs-icon-left">
+	<a class="tab-item" ng-click="pemasukan()">
+	<i class="icon ion-android-add "></i>
+            Input Pemasukan
+	</a>	
+    </div>
+    <ion-list>
+      <ion-item ng-repeat="pemasukan in pemasukans" href="#/app/pemasukans/{{pemasukan.id}}">
+        {{pemasukan.id}} | {{pemasukan.title}} | {{pemasukan.jumlah}} 
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

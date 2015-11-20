@@ -1,0 +1,25 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Category</h1>
+    <div class="buttons">
+        <button class="button button-clear" ng-click="closeCategory()"><i class="ion ion-android-cancel"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="doSaveCategory()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Nama Category</span>
+          <input type="text" ng-model="categoryData.nama">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Keterangan</span>
+          <input type="password" ng-model="categoryData.keterangan">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit"><i class="icon ion-android-checkmark-circle"></i> Add Category</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

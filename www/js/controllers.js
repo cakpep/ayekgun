@@ -13,7 +13,7 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {    
+  $ionicModal.fromTemplateUrl('templates/index/login.html', {    
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -54,7 +54,7 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.pengeluaranData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/pengeluaran.html', {    
+  $ionicModal.fromTemplateUrl('templates/pengeluaran/pengeluaran.html', {    
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -81,41 +81,53 @@ angular.module('starter.controllers', ['starter.services'])
   //* end proses pengeluaran
     
 
-  /********************************************************************************************
-    * proses pemasukan
-    */
-  // Form data for the login modal
-  $scope.pemasukanData = {};
+  
+  
+  // start of modal category settings
+  // Form data for the category modal  
+  $scope.categoryData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/pemasukan.html', {    
+  $ionicModal.fromTemplateUrl('templates/settings/category.html', {    
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
-    $scope.pemasukanModal = modal;
+    $scope.categoryModal = modal;
   });
-  // Open the login modal
-  $scope.pemasukan = function() {
-    $scope.pemasukanModal.show();
-  };
 
   // Triggered in the login modal to close it
-  $scope.closePemasukan = function() {
-    $scope.pemasukanModal.hide();    
-    
+  $scope.closeCategory = function() {
+    $scope.categoryModal.hide();
+    $ionicPopup.alert({
+              title: 'Success',
+              content: 'Category Berhasil Di Simpan'
+            }).then(function(res) {
+              console.log('Test Alert Box');
+            });    
+  };
+
+  // Open the login modal
+  $scope.category = function() {
+    $scope.categoryModal.show();
   };
 
   // Perform the login action when the user submits the login form
-  $scope.doSavePemasukan = function() {
-    console.log('Data pemasukan', $scope.pemasukanData);
-    alert($scope.pemasukanData.nama);    
-  };
+  $scope.doSaveCategory = function() {
+    console.log('save data category', $scope.categoryData);
 
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+    $timeout(function() {
+      $scope.closeLogin();
+    }, 1000);
+  };
+  // end of modal category settings
   // Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
       $scope.loginModal.remove();
       $scope.pengeluaranModal.remove();
-      $scope.pemasukanModal.remove();    
+      $scope.pemasukanModal.remove();
+      $scope.categoryModal.remove();
   });
 
 
@@ -137,18 +149,7 @@ angular.module('starter.controllers', ['starter.services'])
   console.log($scope.session);  
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'makan', jumlah: 2000, id: 1 },
-    { title: 'minum', jumlah: 2000, id: 2 },
-    { title: 'ngopi', jumlah: 2000, id: 3 },
-    { title: 'burjo', jumlah: 2000, id: 4 },
-    { title: 'Rap',   jumlah: 0, id: 5 },
-    { title: 'Cowbe', jumlah: null, id: 6 }
-  ];
-})
-
-.controller('PengeluaranController', function($scope) {
+.controller('PengeluaranController', function($scope,$stateParams) {
   $scope.pengeluarans = [
     { title: 'ngopi', jumlah: 2000, id: 3 },
     { title: 'burjo', jumlah: 2000, id: 4 },
@@ -158,6 +159,49 @@ angular.module('starter.controllers', ['starter.services'])
     { title: 'minum', jumlah: 2000, id: 2 }
     
   ];
+  
+})
+
+.controller('PemasukanController', function($scope,$ionicModal, $ionicPopup, $stateParams) {
+    $scope.pemasukans = [
+      { keterangan : 'ngutang mbah e', title: 'ngutang', jumlah: 2000, id: 3 },
+      { keterangan : 'ngutang mbah e', title: 'ngamen', jumlah: 2000, id: 4 },
+      { keterangan : 'ngutang mbah e', title: 'nyabe',   jumlah: 0, id: 5 },
+      { keterangan : 'ngutang mbah e', title: 'nyolong', jumlah: null, id: 6 }    
+    ];
+  
+    $scope.pemasukan = $stateParams.pemasukanId;
+    console.log($stateParams.pemasukanId);
+    
+    /********************************************************************************************
+    * proses pemasukan
+    */
+    // Form data for the login modal
+    $scope.pemasukanData = {};
+
+    // Create the login modal that we will use later
+    $ionicModal.fromTemplateUrl('templates/pemasukan/pemasukan.html', {    
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.pemasukanModal = modal;
+    });
+    // Open the login modal
+    $scope.pemasukan = function() {
+      $scope.pemasukanModal.show();
+    };
+
+    // Triggered in the login modal to close it
+    $scope.closePemasukan = function() {
+      $scope.pemasukanModal.hide();    
+
+    };
+
+    // Perform the login action when the user submits the login form
+    $scope.doSavePemasukan = function() {
+      console.log('Data pemasukan', $scope.pemasukanData);
+      alert($scope.pemasukanData.nama);    
+    };
   
 })
 
@@ -176,6 +220,6 @@ angular.module('starter.controllers', ['starter.services'])
     };
  
 })
-
-.controller(['HomeController','PlaylistCtrl','PengeluaranController','GrafikController'], function($scope, $stateParams) {
+.controller('SettingsController', function($scope,$ionicModal, $ionicPopup) {
+   
 });

@@ -9,7 +9,7 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-home" menu-toggle="right">          
+        <button class="button button-icon button-clear ion-settings" menu-toggle="right">          
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
@@ -25,18 +25,15 @@
         <ion-item menu-close href="#/app/home">
           <i class="icon ion-home"></i> Home
         </ion-item>              
-        <ion-item menu-close ng-click="pengeluaran()">
-          <i class="icon ion-ios-upload"></i> Pengeluaran
-        </ion-item>        
-        <ion-item menu-close ng-click="pemasukan()">
-          <i class="icon ion-ios-download"></i> Pemasukan
+        <ion-item menu-close href="#/app/pemasukans">
+          <i class="icon ion-arrow-return-right"></i> Pemasukan
+        </ion-item>
+        <ion-item menu-close href="#/app/pengeluarans">
+          <i class="icon ion-arrow-return-left"></i> Pengeluaran
         </ion-item>
         <ion-item menu-close href="#/app/grafik">
           <i class="icon ion-arrow-graph-up-right"></i> grafik
-        </ion-item>
-        <ion-item menu-close href="#/app/pengeluarans">
-          <i class="icon ion-clipboard"></i> Daftar Pengeluaran
-        </ion-item>
+        </ion-item>        
         <ion-item menu-close ng-click="login()">
           <i class="icon ion-log-in"></i> Login
         </ion-item>
@@ -52,7 +49,7 @@
         <ion-item menu-close href="#/app/home">
           <i class="icon ion-home"></i> Mata uang
         </ion-item>              
-        <ion-item menu-close ng-click="pengeluaran()">
+        <ion-item menu-close ng-click="category()">
           <i class="icon ion-ios-upload"></i> Category
         </ion-item>                
       </ion-list>

@@ -24,11 +24,11 @@ angular.module('starter', ['ionic', 'starter.controllers','chart.js','ngCordova'
 
      
       // App syntax
-        db = $cordovaSQLite.openDB({ name: "my.db" });
+//        db = $cordovaSQLite.openDB({ name: "my.db" });
      
       // for opening a background db:
-      db = $cordovaSQLite.openDB({ name: "my.db", bgType: 1 });
-      console.log(db);
+//      db = $cordovaSQLite.openDB({ name: "my.db", bgType: 1 });
+//      console.log(db);
 
   // $scope.execute = function() {
   //   var query = "INSERT INTO test_table (data, data_num) VALUES (?,?)";
@@ -51,14 +51,14 @@ angular.module('starter', ['ionic', 'starter.controllers','chart.js','ngCordova'
     .state('app', {
       url: '/app',
       abstract: true,
-      templateUrl: 'templates/menu.html',
+      templateUrl: 'templates/layouts/menu.html',
       controller: 'AppCtrl'
     })   
     .state('app.home', {
         url: '/home',
         views: {
           'menuContent': {
-            templateUrl: 'templates/home.html',
+            templateUrl: 'templates/index/home.html',
             controller: 'HomeController'
           }
         }
@@ -67,35 +67,35 @@ angular.module('starter', ['ionic', 'starter.controllers','chart.js','ngCordova'
         url: '/pengeluarans',
         views: {
           'menuContent': {
-            templateUrl: 'templates/pengeluaranIndex.html',
+            templateUrl: 'templates/pengeluaran/index.html',
             controller: 'PengeluaranController'
           }
         }
-      })        
+      })
+      .state('app.pemasukans', {
+        url: '/pemasukans',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/pemasukan/index.html',
+            controller: 'PemasukanController'
+          }
+        }
+      })
+      .state('app.pemasukan', {
+        url: '/pemasukans/:pemasukanId',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/pemasukan/detil.html',
+            controller: 'PemasukanController'
+          }
+        }
+      })
       .state('app.grafik', {
         url: '/grafik',
         views: {
           'menuContent': {
-            templateUrl: 'templates/grafik.html',          
+            templateUrl: 'templates/grafik/grafik.html',          
             controller: 'GrafikController'
-          }
-        }
-      })
-      .state('app.playlists', {
-        url: '/playlists',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/playlists.html',
-            controller: 'PlaylistsCtrl'
-          }
-        }
-      })
-      .state('app.single', {
-        url: '/playlists/:playlistId',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/playlist.html',
-            controller: 'PlaylistCtrl'
           }
         }
       });

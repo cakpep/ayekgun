@@ -1,0 +1,26 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Input Pengeluaran</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closePengeluaran()"><i class="ion ion-android-cancel"></i></button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="doSavePengeluaran()">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="Nama Pengeluaran" ng-model="pengeluaranData.nama">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Jumlah" ng-model="pengeluaranData.jumlah">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Keterangan" ng-model="pengeluaranData.jumlah">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit"><i class="icon ion-android-checkmark-circle"></i> Simpan</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
