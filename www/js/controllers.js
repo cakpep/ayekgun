@@ -136,17 +136,9 @@ angular.module('starter.controllers', ['starter.services'])
   
 })
 
-.controller('PemasukanController', function($scope,$ionicModal, $ionicPopup, $stateParams) {
-    $scope.pemasukans = [
-      { keterangan : 'ngutang mbah e', title: 'ngutang', jumlah: 2000, id: 3 },
-      { keterangan : 'ngutang mbah e', title: 'ngamen', jumlah: 2000, id: 4 },
-      { keterangan : 'ngutang mbah e', title: 'nyabe',   jumlah: 0, id: 5 },
-      { keterangan : 'ngutang mbah e', title: 'nyolong', jumlah: null, id: 6 }    
-    ];
-  
-    $scope.pemasukan = $stateParams.pemasukanId;
-    console.log($stateParams.pemasukanId);
-    
+.controller('PemasukanController', function($scope,$ionicModal, $ionicPopup, $cordovaSQLite,$stateParams) {
+    var data = [];
+        
     /********************************************************************************************
     * proses pemasukan
     */
@@ -168,18 +160,86 @@ angular.module('starter.controllers', ['starter.services'])
     // Triggered in the login modal to close it
     $scope.closePemasukan = function() {
       $scope.pemasukanModal.hide();    
-
     };
+    
+//    $scope.selectAll = function() {
+        var query = "SELECT * FROM pemasukan";
+        var data =  $cordovaSQLite.execute(db, query).then(function(res) {
+            if(res.rows.length > 0) {
+                //console.log("SELECTED -> " + res.rows.item(0).nama_pemasukan + " " + res.rows.item(0).jumlah);                
+                for(i=0;i<res.rows.length;i++){
+                    data[i] = res.rows.item(i);
+//                  data.push(res.rows.item(i));
 
+                }                
+                $scope.pemasukans = data;                
+            } else {
+                console.log("No results found");
+            }
+        }, function (err) {
+            console.error(err);
+        });        
+//    }
+    
+    if($stateParams.pemasukanId){
+        var dataDetil= [];
+        var id = $stateParams.pemasukanId;           
+        var query = "SELECT * FROM pemasukan where id ="+id;
+        var data =  $cordovaSQLite.execute(db, query).then(function(res) {
+            if(res.rows.length > 0) {                
+                for(i=0;i<res.rows.length;i++){
+                    dataDetil = res.rows.item(i);          
+                }                
+                $scope.pemasukanDetil = dataDetil;
+                console.log($scope.pemasukanDetil);
+            } else {
+                console.log("No results found");
+            }
+        }, function (err) {
+            console.error(err);
+        }); 
+        
+    }else{
+        console.log('params not found');
+    }
+    
+    $scope.select = function() {     
+        console.log($stateParams.pemasukanId);
+        var query = "SELECT firstname, lastname FROM people WHERE lastname = ?";
+        $cordovaSQLite.execute(db, query, [lastname]).then(function(res) {
+            if(res.rows.length > 0) {
+                console.log("SELECTED -> " + res.rows.item(0).firstname + " " + res.rows.item(0).lastname);
+            } else {
+                console.log("No results found");
+            }
+        }, function (err) {
+            console.error(err);
+        });
+    }
+    
     // Perform the login action when the user submits the login form
-    $scope.doSavePemasukan = function() {
-      console.log('Data pemasukan', $scope.pemasukanData);
-      alert($scope.pemasukanData.nama);    
+    $scope.doSavePemasukan = function() {        
+            var data = $scope.pemasukanData;
+            var query = "INSERT INTO pemasukan (nama_pemasukan, jumlah, keterangan) VALUES (?,?,?)";
+            $cordovaSQLite.execute(db, query, [data.nama_pemasukan, data.jumlah, data.keterangan]).then(function(res) {
+                console.log("INSERT ID -> " + res.insertId);
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Success',
+                    template: 'data '+res.insertId+' berhasil disimpan'
+                });
+                $scope.pemasukanModal.hide();    
+            }, function (err) {
+                console.error(err);
+                var alertPopup = $ionicPopup.alert({
+                    title: 'Error',
+                    template: 'data gagal disimpan'
+                });
+            });
     };
   
 })
 
-.controller('GrafikController', function($scope) {
+.controller('GrafikController', function($scope,$cordovaSQLite) {
  
     $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
     $scope.series = ['Series A', 'Series B'];
@@ -192,8 +252,8 @@ angular.module('starter.controllers', ['starter.services'])
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         data: [65, 59, 80, 81, 56, 55, 40],
     };
- 
+    
 })
 .controller('SettingsController', function($scope,$ionicModal, $ionicPopup) {
-   
+    
 });

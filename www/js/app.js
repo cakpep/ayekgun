@@ -6,7 +6,7 @@ var db;
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers','chart.js','ngCordova'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'chart.js'])
 
 .run(function($ionicPlatform, $cordovaSQLite) {
   $ionicPlatform.ready(function() {
@@ -20,28 +20,20 @@ angular.module('starter', ['ionic', 'starter.controllers','chart.js','ngCordova'
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-    }
-
-     
-      // App syntax
+    }    
 //        db = $cordovaSQLite.openDB({ name: "my.db" });
-     
-      // for opening a background db:
-//      db = $cordovaSQLite.openDB({ name: "my.db", bgType: 1 });
-//      console.log(db);
-
-  // $scope.execute = function() {
-  //   var query = "INSERT INTO test_table (data, data_num) VALUES (?,?)";
-  //   $cordovaSQLite.execute(db, query, ["test", 100]).then(function(res) {
-  //     console.log("insertId: " + res.insertId);
-  //   }, function (err) {
-  //     console.error(err);
-  //   });
-  // };
-
-    // $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS team (id integer primary key, name text)");
-
-
+        // for opening a background db:
+//        db = $cordovaSQLite.openDB({ name: "my.db", bgType: 1 });
+        
+        if (window.cordova) {
+            db = $cordovaSQLite.openDB({ name: "my.db" }); //device
+        }else{
+            db = window.openDatabase("my.db", '1', 'my', 1024 * 1024 * 100); // browser
+        }                
+        
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS pemasukan (id integer primary key, nama_pemasukan text, jumlah int, keterangan text)");
+        
   });
 })
 
