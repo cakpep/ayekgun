@@ -8,7 +8,22 @@
     </div>
     <ion-list>
       <ion-item ng-repeat="pemasukan in pemasukans" href="#/app/pemasukans/{{pemasukan.id}}">
-        {{pemasukan.id}} | {{pemasukan.nama_pemasukan}} | {{pemasukan.jumlah}} | {{pemasukan.keterangan}}
+        <div class="row">
+            <div class="col-10">
+            <button class="button"  style="background-color: #EE5757; color: #fff; font-size: bold;">
+                {{pemasukan.id}}                
+            </button> 
+            </div>
+            <div class="col-10">
+                <p><b> {{pemasukan.nama_pemasukan}}</b> </p>
+                <p> {{pemasukan.jumlah}} </p>
+            </div>            
+            <div class="col-80">
+                <div class="text-right">
+                    {{pemasukan.keterangan}}
+                </div>                
+            </div>
+        </div>         
       </ion-item>
     </ion-list>
   </ion-content>
