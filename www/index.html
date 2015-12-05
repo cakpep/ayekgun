@@ -27,6 +27,12 @@
     <script src="js/services.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
+    <script>
+        if ($(".visitorsChart").is(":visible")) {
+            var ctx = $(".visitorsChart").get(0).getContext("2d");
+            var myPieChart = new Chart(ctx).Pie(data,{});
+        }
+    </script>
   </head>
 
   <body ng-app="starter">

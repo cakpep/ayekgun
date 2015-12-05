@@ -7,7 +7,7 @@
 	</a>	
     </div>
     <ion-list>
-      <ion-item ng-repeat="pemasukan in pemasukans" href="#/app/pemasukans/{{pemasukan.id}}">
+      <ion-item ng-repeat="pemasukan in pemasukans" ng-click="getPemasukan(pemasukan.id)">
         <div class="row">
             <div class="col-10">
             <button class="button"  style="background-color: #EE5757; color: #fff; font-size: bold;">

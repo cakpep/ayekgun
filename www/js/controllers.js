@@ -136,7 +136,7 @@ angular.module('starter.controllers', ['starter.services'])
   
 })
 
-.controller('PemasukanController', function($scope,$ionicModal, $ionicPopup, $cordovaSQLite,$stateParams) {
+.controller('PemasukanController', function($scope,$ionicModal, $ionicPopup,$cordovaSQLite, $stateParams) {
     var data = [];
         
     /********************************************************************************************
@@ -156,21 +156,38 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.pemasukan = function() {
       $scope.pemasukanModal.show();
     };
+    $scope.getPemasukan = function(id) {
+        var dataDetil= [];        
+        var query = "SELECT * FROM pemasukan where id ="+id;
+        var data =  $cordovaSQLite.execute(db, query).then(function(res) {
+            if(res.rows.length > 0) {                
+                for(i=0;i<res.rows.length;i++){
+                    dataDetil = res.rows.item(i);          
+                }                
+                $scope.pemasukanData = dataDetil;                
+            } else {
+                console.log("No results found");
+            }
+        }, function (err) {
+            console.error(err);
+        });
+        $scope.pemasukanModal.show();
+    };
 
     // Triggered in the login modal to close it
     $scope.closePemasukan = function() {
       $scope.pemasukanModal.hide();    
     };
     
-//    $scope.selectAll = function() {
+//   * $scope.selectAll = function() {
         var query = "SELECT * FROM pemasukan";
         var data =  $cordovaSQLite.execute(db, query).then(function(res) {
             if(res.rows.length > 0) {
                 //console.log("SELECTED -> " + res.rows.item(0).nama_pemasukan + " " + res.rows.item(0).jumlah);                
                 for(i=0;i<res.rows.length;i++){
                     data[i] = res.rows.item(i);
-//                  data.push(res.rows.item(i));
-
+////    *              data.push(res.rows.item(i));
+//
                 }                
                 $scope.pemasukans = data;                
             } else {
@@ -179,7 +196,7 @@ angular.module('starter.controllers', ['starter.services'])
         }, function (err) {
             console.error(err);
         });        
-//    }
+//   * }
     
     if($stateParams.pemasukanId){
         var dataDetil= [];
