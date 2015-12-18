@@ -270,7 +270,7 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('GrafikController', function($scope,$cordovaSQLite) {
- 
+    
     $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
     $scope.series = ['Series A', 'Series B'];
     $scope.data = [
@@ -282,6 +282,32 @@ angular.module('starter.controllers', ['starter.services'])
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         data: [65, 59, 80, 81, 56, 55, 40],
     };
+    
+})
+.controller('GrafikPengeluaranController', function($scope,$ionicModal, $ionicPopup,$cordovaSQLite, $stateParams) {
+        var labels = [];
+        var datas = [];
+        var queryTgl = "SELECT nama_pemasukan,jumlah FROM pemasukan where left(tanggal,7)=tanggal";
+        var query = "SELECT nama_pemasukan,jumlah FROM pemasukan where id<11";
+        var data =  $cordovaSQLite.execute(db, query).then(function(res) {
+            if(res.rows.length > 0) {                
+                for(i=0;i<res.rows.length;i++){                    
+                    labels[i] = res.rows.item(i).nama_pemasukan;
+                    datas[i] = res.rows.item(i).jumlah;
+                }                
+                //console.log("my labels = "+labels);
+                //console.log("my datas "+datas);
+            } else {
+                console.log("No results found");
+            }
+        }, function (err) {
+            console.error(err);
+        });
+            
+    $scope.pemasukanData = {
+        labels: labels,
+        data: datas,
+    };    
     
 })
 .controller('SettingsController', function($scope,$ionicModal, $ionicPopup) {

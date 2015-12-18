@@ -103,6 +103,15 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'chart.j
             controller: 'GrafikController'
           }
         }
+      })
+      .state('app.grafikPengeluaran', {
+        url: '/grafik-pengeluaran',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/grafik/grafikPengeluaran.html',          
+            controller: 'GrafikPengeluaranController'
+          }
+        }
       });
   // if none of the above states are matched, use this as the fallback
   // default action route
